@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lawn Enforcement</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <link rel="stylesheet" href="/css/desktop.css" />
+  <link rel="stylesheet" href="/css/crt.css" />
+  <link rel="stylesheet" href="/css/winamp.css" />
+  <link rel="stylesheet" href="/css/vhs-player.css" />
+</head>
+<body>
+
+  <!-- ============ BOOT SCREEN ============ -->
+  <div id="boot-screen">
+    <div class="boot-content">
+      <div class="boot-logo">
+        <pre class="boot-ascii">
+██╗      █████╗ ██╗    ██╗███╗   ██╗
+██║     ██╔══██╗██║    ██║████╗  ██║
+██║     ███████║██║ █╗ ██║██╔██╗ ██║
+██║     ██╔══██║██║███╗██║██║╚██╗██║
+███████╗██║  ██║╚███╔███╔╝██║ ╚████║
+╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═══╝
+ ███████╗███╗   ██╗███████╗ ██████╗ ██████╗  ██████╗███████╗
+ ██╔════╝████╗  ██║██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔════╝
+ █████╗  ██╔██╗ ██║█████╗  ██║   ██║██████╔╝██║     █████╗
+ ██╔══╝  ██║╚██╗██║██╔══╝  ██║   ██║██╔══██╗██║     ██╔══╝
+ ███████╗██║ ╚████║██║     ╚██████╔╝██║  ██║╚██████╗███████╗
+ ╚══════╝╚═╝  ╚═══╝╚═╝      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝
+        </pre>
+      </div>
+      <div class="boot-text">Starting Lawn Enforcement...</div>
+      <div class="boot-progress-border">
+        <div class="boot-progress-bar" id="boot-progress"></div>
+      </div>
+      <div class="boot-click-prompt" id="boot-click-prompt">Click anywhere to begin</div>
+    </div>
+  </div>
+
+  <!-- ============ CRT OVERLAY (always on top) ============ -->
+  <div id="crt-overlay">
+    <div class="scanlines"></div>
+    <div class="vhs-tracking"></div>
+  </div>
+
+  <!-- ============ DESKTOP ============ -->
+  <div id="desktop" class="hidden">
+
+    <!-- Wallpaper band name watermark -->
+    <div id="wallpaper-text">LAWN<br>ENFORCEMENT</div>
+
+    <!-- Desktop Icons -->
+    <div id="desktop-icons">
+      <div class="desktop-icon" data-window="music-player-window" tabindex="0">
+        <div class="icon-img icon-music"></div>
+        <span>My Music</span>
+      </div>
+      <div class="desktop-icon" data-window="video-player-window" tabindex="0">
+        <div class="icon-img icon-tv"></div>
+        <span>TV</span>
+      </div>
+      <div class="desktop-icon" data-window="about-window" tabindex="0">
+        <div class="icon-img icon-notepad"></div>
+        <span>About Us</span>
+      </div>
+      <div class="desktop-icon" data-window="tour-window" tabindex="0">
+        <div class="icon-img icon-file"></div>
+        <span>Tour.txt</span>
+      </div>
+      <div class="desktop-icon" data-window="guestbook-window" tabindex="0">
+        <div class="icon-img icon-guestbook"></div>
+        <span>Guestbook</span>
+      </div>
+      <div class="desktop-icon" tabindex="0">
+        <div class="icon-img icon-recycle"></div>
+        <span>Recycle Bin</span>
+      </div>
+    </div>
+
+    <!-- ======== WINDOWS ======== -->
+
+    <!-- MUSIC PLAYER (Winamp-style) -->
+    <div id="music-player-window" class="window desktop-window hidden" style="width:340px; left:120px; top:60px;">
+      <div class="title-bar">
+        <div class="title-bar-text">LAWN ENFORCEMENT - Winamp</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Maximize" data-action="maximize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body winamp-body">
+        <div class="winamp-display">
+          <canvas id="winamp-visualizer" width="275" height="40"></canvas>
+          <div class="winamp-marquee"><span id="winamp-track-title">Lawn Enforcement - Track 1</span></div>
+          <div class="winamp-time" id="winamp-time">00:00 / 00:00</div>
+        </div>
+        <div class="winamp-seek-row">
+          <input type="range" id="winamp-seek" class="winamp-seek" min="0" max="100" value="0" />
+        </div>
+        <div class="winamp-controls">
+          <button class="winamp-btn" id="btn-prev" title="Previous">⏮</button>
+          <button class="winamp-btn" id="btn-play" title="Play">▶</button>
+          <button class="winamp-btn" id="btn-pause" title="Pause">⏸</button>
+          <button class="winamp-btn" id="btn-stop" title="Stop">⏹</button>
+          <button class="winamp-btn" id="btn-next" title="Next">⏭</button>
+          <div class="winamp-volume">
+            <span class="vol-label">VOL</span>
+            <input type="range" id="winamp-volume" min="0" max="100" value="80" />
+          </div>
+        </div>
+        <div class="winamp-playlist" id="winamp-playlist">
+          <div class="winamp-playlist-header">Playlist</div>
+          <ul id="winamp-playlist-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO PLAYER (VHS-style) -->
+    <div id="video-player-window" class="window desktop-window hidden" style="width:560px; left:200px; top:40px;">
+      <div class="title-bar">
+        <div class="title-bar-text">lawn_enforcement_live.avi - Media Player</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Maximize" data-action="maximize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body vhs-body">
+        <div class="crt-bezel">
+          <div class="crt-screen">
+            <video id="vhs-video" preload="metadata">
+              <source src="/video/placeholder.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="vhs-overlay">
+              <div class="vhs-scanlines"></div>
+              <div class="vhs-noise"></div>
+            </div>
+            <div class="vhs-indicator" id="vhs-indicator">PLAY ▶</div>
+            <div class="vhs-timestamp" id="vhs-timestamp">00:00:00</div>
+          </div>
+        </div>
+        <div class="vcr-controls">
+          <button class="vcr-btn" id="vcr-rew" title="Rewind">⏪</button>
+          <button class="vcr-btn" id="vcr-play" title="Play">▶</button>
+          <button class="vcr-btn" id="vcr-pause" title="Pause">⏸</button>
+          <button class="vcr-btn" id="vcr-stop" title="Stop">⏹</button>
+          <button class="vcr-btn" id="vcr-ff" title="Fast Forward">⏩</button>
+          <div class="vcr-seek-wrap">
+            <input type="range" id="vcr-seek" class="vcr-seek" min="0" max="100" value="0" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT WINDOW (Notepad-style) -->
+    <div id="about-window" class="window desktop-window hidden" style="width:440px; left:300px; top:80px;">
+      <div class="title-bar">
+        <div class="title-bar-text">about_us.txt - Notepad</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Maximize" data-action="maximize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body notepad-body">
+        <div class="notepad-menu">
+          <span class="notepad-menu-item">File</span>
+          <span class="notepad-menu-item">Edit</span>
+          <span class="notepad-menu-item">Format</span>
+          <span class="notepad-menu-item">Help</span>
+        </div>
+        <div class="notepad-content" contenteditable="false">
+          <p><strong>LAWN ENFORCEMENT</strong></p>
+          <p>Est. 1995 — Suburbia, USA</p>
+          <br/>
+          <p>We are Lawn Enforcement. Born from the hum of
+Saturday morning mowers and the crackle of rabbit-ear
+antennas. Our sound is the dial-up handshake your
+modem never forgot.</p>
+          <br/>
+          <p>We play instruments found at garage sales and
+sing into microphones taped to broomsticks.
+Every song is recorded on a 4-track cassette
+recorder in a wood-paneled basement.</p>
+          <br/>
+          <p>MEMBERS:</p>
+          <p>  Crabgrass Carl — Vocals / Guitar</p>
+          <p>  Bermuda Bev — Bass / Synth</p>
+          <p>  Dandelion Dave — Drums / Percussion</p>
+          <p>  Fescue Fran — Keys / Samples</p>
+          <br/>
+          <p>GENRE: Lo-fi / Suburban Noise / Yard Rock</p>
+          <br/>
+          <p>CONTACT: lawnenforcement@geocities.com</p>
+          <p>AIM: xXLawnCopXx</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOUR DATES WINDOW -->
+    <div id="tour-window" class="window desktop-window hidden" style="width:400px; left:350px; top:100px;">
+      <div class="title-bar">
+        <div class="title-bar-text">tour_dates.txt - Notepad</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Maximize" data-action="maximize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body notepad-body">
+        <div class="notepad-menu">
+          <span class="notepad-menu-item">File</span>
+          <span class="notepad-menu-item">Edit</span>
+          <span class="notepad-menu-item">Format</span>
+          <span class="notepad-menu-item">Help</span>
+        </div>
+        <div class="notepad-content" contenteditable="false">
+          <p>═══════════════════════════════</p>
+          <p>  LAWN ENFORCEMENT TOUR '96</p>
+          <p>  "Mow The Line" Summer Tour</p>
+          <p>═══════════════════════════════</p>
+          <br/>
+          <p>JUN 14 — The Garage, Anytown USA</p>
+          <p>JUN 21 — Rec Center, Springfield</p>
+          <p>JUL 04 — Block Party, Elm Street</p>
+          <p>JUL 12 — VFW Hall, Shelbyville</p>
+          <p>JUL 19 — Skate Park, Riverside</p>
+          <p>AUG 02 — Basement Show, Portland</p>
+          <p>AUG 09 — Pizza Hut Parking Lot</p>
+          <p>AUG 16 — Community Pool, Oakdale</p>
+          <p>AUG 30 — FINAL SHOW — The Lawn</p>
+          <br/>
+          <p>TICKETS: $5 at the door</p>
+          <p>ALL AGES / BYOB (Bring Your Own Blanket)</p>
+          <br/>
+          <p>* dates subject to rain delays *</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUESTBOOK WINDOW -->
+    <div id="guestbook-window" class="window desktop-window hidden" style="width:420px; left:250px; top:90px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Guestbook - Internet Explorer</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Maximize" data-action="maximize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body guestbook-body">
+        <div class="guestbook-header">
+          <marquee scrollamount="3">★ Welcome to the Lawn Enforcement Guestbook! Sign it! ★ You are visitor #<span id="visitor-counter">004782</span> ★</marquee>
+        </div>
+        <div class="guestbook-entries" id="guestbook-entries">
+          <div class="guestbook-entry">
+            <div class="entry-meta">
+              <strong>~*xXGrassManXx*~</strong> | 03/14/1996 | AOL
+            </div>
+            <p>OMG u guys ROCK!!! saw u at the block party and it was AMAZING!! keep mowing!! 🌿🎸</p>
+          </div>
+          <div class="guestbook-entry">
+            <div class="entry-meta">
+              <strong>SurfDude99</strong> | 02/28/1996 | Netscape
+            </div>
+            <p>cool site dude!! the music player is rad. can u put tabs for "suburban static" on here??</p>
+          </div>
+          <div class="guestbook-entry">
+            <div class="entry-meta">
+              <strong>~LawnGrrl~</strong> | 02/10/1996 | WebTV
+            </div>
+            <p>i made a fan page for u guys at geocities.com/lawnenforcementfans CHECK IT OUT!!</p>
+          </div>
+        </div>
+        <fieldset class="guestbook-form-fieldset">
+          <legend>Sign the Guestbook</legend>
+          <div class="field-row-stacked">
+            <label for="gb-name">Your Name / Handle:</label>
+            <input type="text" id="gb-name" placeholder="~*YourName*~" />
+          </div>
+          <div class="field-row-stacked">
+            <label for="gb-message">Your Message:</label>
+            <textarea id="gb-message" rows="3" placeholder="Type your message here..."></textarea>
+          </div>
+          <div class="field-row" style="justify-content: flex-end; margin-top: 6px;">
+            <button id="gb-submit">Sign!</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <!-- ======== TASKBAR ======== -->
+    <div id="taskbar">
+      <button id="start-button">
+        <span class="start-icon">🌿</span>
+        <span>Start</span>
+      </button>
+      <div id="taskbar-windows"></div>
+      <div id="taskbar-tray">
+        <span id="taskbar-clock"></span>
+      </div>
+    </div>
+
+    <!-- ======== START MENU ======== -->
+    <div id="start-menu" class="window hidden">
+      <div class="start-menu-sidebar">LAWN ENFORCEMENT 96</div>
+      <ul class="start-menu-list">
+        <li class="start-menu-item has-submenu">
+          <span>Programs</span>
+          <span class="submenu-arrow">►</span>
+          <ul class="start-submenu">
+            <li class="start-menu-item" data-window="music-player-window">
+              <span class="menu-icon">🎵</span> My Music
+            </li>
+            <li class="start-menu-item" data-window="video-player-window">
+              <span class="menu-icon">📺</span> TV
+            </li>
+            <li class="start-menu-item" data-window="about-window">
+              <span class="menu-icon">📝</span> About Us
+            </li>
+            <li class="start-menu-item" data-window="tour-window">
+              <span class="menu-icon">📄</span> Tour.txt
+            </li>
+            <li class="start-menu-item" data-window="guestbook-window">
+              <span class="menu-icon">📖</span> Guestbook
+            </li>
+          </ul>
+        </li>
+        <li class="start-menu-divider"></li>
+        <li class="start-menu-item" id="menu-shut-down">
+          <span class="menu-icon">🔌</span> Shut Down...
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /desktop -->
+
+  <!-- ======== SHUTDOWN SCREEN ======== -->
+  <div id="shutdown-screen" class="hidden">
+    <div class="shutdown-text">It is now safe to turn off your computer.</div>
+  </div>
+
+  <script src="/js/boot.js"></script>
+  <script src="/js/desktop.js"></script>
+  <script src="/js/start-menu.js"></script>
+  <script src="/js/music-player.js"></script>
+  <script src="/js/video-player.js"></script>
+
+</body>
+</html>
