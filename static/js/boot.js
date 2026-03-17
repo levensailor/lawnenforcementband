@@ -7,6 +7,12 @@
 
   if (!bootScreen || !desktop) return;
 
+  if (window.location.search.indexOf("skipboot") !== -1) {
+    bootScreen.classList.add("hidden");
+    desktop.classList.remove("hidden");
+    return;
+  }
+
   clickPrompt.style.display = "block";
 
   bootScreen.addEventListener("click", function startBoot(e) {

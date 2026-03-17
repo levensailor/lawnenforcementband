@@ -9,3 +9,5 @@ build/
 logs/
 *.log
 .DS_Store
+.vercel/
+node_modules/
