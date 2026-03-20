@@ -265,5 +265,24 @@
   window.DesktopManager = {
     openWindow: openWindow,
     closeWindow: closeWindow,
+    bringToFront: bringToFront,
+    initWindow: function (win) {
+      win.addEventListener("mousedown", function () {
+        bringToFront(win);
+      });
+      var titleBar = win.querySelector(".title-bar");
+      if (titleBar) initDrag(win, titleBar);
+      win.querySelectorAll(".title-bar-controls button").forEach(function (btn) {
+        btn.addEventListener("mousedown", function (e) { e.stopPropagation(); });
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var action = btn.getAttribute("data-action") || btn.getAttribute("aria-label").toLowerCase();
+          if (action === "close") closeWindow(win.id);
+          else if (action === "minimize") minimizeWindow(win.id);
+          else if (action === "maximize") maximizeWindow(win.id);
+        });
+      });
+      addTaskbarButton(win.id, win);
+    },
   };
 })();

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/crt.css" />
   <link rel="stylesheet" href="/css/winamp.css" />
   <link rel="stylesheet" href="/css/vhs-player.css" />
+  <link rel="stylesheet" href="/css/aim.css" />
 </head>
 <body>
 
@@ -72,6 +73,10 @@
       <div class="desktop-icon" data-window="guestbook-window" tabindex="0">
         <div class="icon-img icon-guestbook"></div>
         <span>Guestbook</span>
+      </div>
+      <div class="desktop-icon" data-window="aim-window" tabindex="0">
+        <div class="icon-img icon-aim"></div>
+        <span>AIM</span>
       </div>
       <div class="desktop-icon" data-window="recycle-bin-window" tabindex="0">
         <div class="icon-img icon-recycle"></div>
@@ -293,6 +298,40 @@ recorder in a wood-paneled basement.</p>
       </div>
     </div>
 
+    <!-- AOL INSTANT MESSENGER BUDDY LIST -->
+    <div id="aim-window" class="window desktop-window hidden" style="width:210px; left:20px; top:60px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Buddy List</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body aim-buddy-body">
+        <div class="aim-header">
+          <div class="aim-logo">AOL Instant Messenger</div>
+          <div class="aim-screenname-row">
+            <span class="aim-online-dot">●</span>
+            <span class="aim-my-name">xXLawnCopXx</span>
+          </div>
+        </div>
+        <div class="aim-group-header">Buddies (2/2)</div>
+        <div class="aim-buddy-list">
+          <div class="aim-buddy" data-buddy="skater_chic_81">
+            <span class="aim-status-dot">●</span> skater_chic_81
+          </div>
+          <div class="aim-buddy" data-buddy="lawn_enforcement_manager">
+            <span class="aim-status-dot">●</span> lawn_enforcement_manager
+          </div>
+        </div>
+        <div class="aim-buddy-footer">
+          <button class="aim-footer-btn">Setup</button>
+          <button class="aim-footer-btn">Away</button>
+          <button class="aim-footer-btn">Warn</button>
+        </div>
+      </div>
+    </div>
+
     <!-- RECYCLE BIN WINDOW -->
     <div id="recycle-bin-window" class="window desktop-window hidden" style="width:420px; left:180px; top:120px;">
       <div class="title-bar">
@@ -380,6 +419,7 @@ recorder in a wood-paneled basement.</p>
   <script src="/js/start-menu.js"></script>
   <script src="/js/music-player.js"></script>
   <script src="/js/video-player.js"></script>
+  <script src="/js/aim.js"></script>
 
 </body>
 </html>
