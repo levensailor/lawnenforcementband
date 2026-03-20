@@ -26,13 +26,32 @@ levensailor
 
 ### Local Setup
 
+A `Makefile` is included for convenience:
+
 ```bash
-cd lawnenforcement
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python main.py
+make install   # create virtualenv and install dependencies
+make dev       # start dev server at http://localhost:8000 (hot reload enabled)
 ```
+
+Override defaults with env vars:
+
+```bash
+make dev PORT=9000 LOG_LEVEL=debug
+```
+
+All available commands:
+
+| Command | Description |
+|---|---|
+| `make install` | Create venv and install deps |
+| `make dev` | Start dev server with hot reload |
+| `make logs` | Tail `logs/app.log` |
+| `make logs-clear` | Delete log files |
+| `make freeze` | Update `requirements.txt` from current venv |
+| `make clean` | Remove venv, logs, and cache |
+| `make info` | Print env/config summary |
+
+Run `make help` to see all commands with descriptions.
 
 The site will be available at **http://localhost:8000**.
 
