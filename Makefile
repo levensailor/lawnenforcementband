@@ -6,6 +6,7 @@
 VENV       := venv
 PYTHON     := $(VENV)/bin/python
 PIP        := $(VENV)/bin/pip
+PYTHON_BIN ?= /opt/homebrew/bin/python3.12
 HOST       ?= 0.0.0.0
 PORT       ?= 8000
 LOG_LEVEL  ?= info
@@ -28,8 +29,8 @@ help: ## Show this help message
 # ── Setup ─────────────────────────────────────────────────────
 .PHONY: install
 install: ## Create virtualenv and install dependencies
-	@echo "→ Creating virtual environment..."
-	python3 -m venv $(VENV)
+	@echo "→ Creating virtual environment (Python 3.12)..."
+	$(PYTHON_BIN) -m venv $(VENV)
 	@echo "→ Installing dependencies from requirements.txt..."
 	$(PIP) install --upgrade pip -q
 	$(PIP) install -r requirements.txt
