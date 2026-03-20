@@ -73,7 +73,7 @@
         <div class="icon-img icon-guestbook"></div>
         <span>Guestbook</span>
       </div>
-      <div class="desktop-icon" tabindex="0">
+      <div class="desktop-icon" data-window="recycle-bin-window" tabindex="0">
         <div class="icon-img icon-recycle"></div>
         <span>Recycle Bin</span>
       </div>
@@ -290,6 +290,37 @@ recorder in a wood-paneled basement.</p>
             <button id="gb-submit">Sign!</button>
           </div>
         </fieldset>
+      </div>
+    </div>
+
+    <!-- RECYCLE BIN WINDOW -->
+    <div id="recycle-bin-window" class="window desktop-window hidden" style="width:420px; left:180px; top:120px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Recycle Bin</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" data-action="minimize"></button>
+          <button aria-label="Maximize" data-action="maximize"></button>
+          <button aria-label="Close" data-action="close"></button>
+        </div>
+      </div>
+      <div class="window-body" style="padding:0;">
+        <div class="recycle-toolbar">
+          <button id="empty-recycle-btn">Empty Recycle Bin</button>
+          <span id="recycle-status" class="recycle-status"></span>
+        </div>
+        <div id="recycle-file-list" class="recycle-file-list">
+          <div class="recycle-file" data-name="KaZaA_v2.6_FULL_SETUP.exe"><span class="recycle-icon">🗑</span> KaZaA_v2.6_FULL_SETUP.exe <span class="recycle-size">4.2 MB</span></div>
+          <div class="recycle-file" data-name="napster_final_edition_DO_NOT_DELETE.exe"><span class="recycle-icon">🗑</span> napster_final_edition_DO_NOT_DELETE.exe <span class="recycle-size">6.1 MB</span></div>
+          <div class="recycle-file" data-name="Morpheus_v3.4_cracked_by_D4RK_H4X0R.exe"><span class="recycle-icon">🗑</span> Morpheus_v3.4_cracked_by_D4RK_H4X0R.exe <span class="recycle-size">8.8 MB</span></div>
+          <div class="recycle-file" data-name="definitely_not_a_virus.exe"><span class="recycle-icon">🗑</span> definitely_not_a_virus.exe <span class="recycle-size">1.3 MB</span></div>
+          <div class="recycle-file" data-name="hot_teens_totally_legal_18plus_REAL.zip"><span class="recycle-icon">🗑</span> hot_teens_totally_legal_18plus_REAL.zip <span class="recycle-size">102 MB</span></div>
+          <div class="recycle-file" data-name="britney_spears_naughty_UNCENSORED_leaked.avi"><span class="recycle-icon">🗑</span> britney_spears_naughty_UNCENSORED_leaked.avi <span class="recycle-size">698 MB</span></div>
+          <div class="recycle-file" data-name="FREE_VBUCKS_GENERATOR_2003_working.exe"><span class="recycle-icon">🗑</span> FREE_VBUCKS_GENERATOR_2003_working.exe <span class="recycle-size">666 KB</span></div>
+          <div class="recycle-file" data-name="my_diary_READ_THIS_MOM_I_MEAN_IT.doc"><span class="recycle-icon">🗑</span> my_diary_READ_THIS_MOM_I_MEAN_IT.doc <span class="recycle-size">44 KB</span></div>
+          <div class="recycle-file" data-name="LimeWire_PRO_FULL_VERSION_no_ads_keygen.exe"><span class="recycle-icon">🗑</span> LimeWire_PRO_FULL_VERSION_no_ads_keygen.exe <span class="recycle-size">5.5 MB</span></div>
+          <div class="recycle-file" data-name="resume_final_FINAL_v3_USE_THIS_ONE.doc"><span class="recycle-icon">🗑</span> resume_final_FINAL_v3_USE_THIS_ONE.doc <span class="recycle-size">88 KB</span></div>
+        </div>
+        <div id="recycle-empty-msg" class="recycle-empty-msg hidden">Recycle Bin is empty.</div>
       </div>
     </div>
 

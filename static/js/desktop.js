@@ -7,6 +7,7 @@
     initWindowControls();
     initTaskbarClock();
     initGuestbook();
+    initRecycleBin();
   });
 
   /* ===== DESKTOP ICONS ===== */
@@ -231,6 +232,27 @@
         var val = parseInt(counter.textContent, 10) + 1;
         counter.textContent = val.toString().padStart(6, "0");
       }
+    });
+  }
+
+  /* ===== RECYCLE BIN ===== */
+  function initRecycleBin() {
+    var emptyBtn = document.getElementById("empty-recycle-btn");
+    if (!emptyBtn) return;
+
+    emptyBtn.addEventListener("click", function () {
+      var fileList = document.getElementById("recycle-file-list");
+      var emptyMsg = document.getElementById("recycle-empty-msg");
+      var status = document.getElementById("recycle-status");
+
+      var files = fileList.querySelectorAll(".recycle-file");
+      if (files.length === 0) return;
+
+      files.forEach(function (f) { f.remove(); });
+      fileList.classList.add("hidden");
+      emptyMsg.classList.remove("hidden");
+      emptyBtn.disabled = true;
+      status.textContent = "All items permanently deleted.";
     });
   }
 
