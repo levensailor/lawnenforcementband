@@ -7,6 +7,7 @@
     initWindowControls();
     initTaskbarClock();
     initGuestbook();
+    initRecycleBin();
   });
 
   /* ===== DESKTOP ICONS ===== */
@@ -234,6 +235,27 @@
     });
   }
 
+  /* ===== RECYCLE BIN ===== */
+  function initRecycleBin() {
+    var emptyBtn = document.getElementById("empty-recycle-btn");
+    if (!emptyBtn) return;
+
+    emptyBtn.addEventListener("click", function () {
+      var fileList = document.getElementById("recycle-file-list");
+      var emptyMsg = document.getElementById("recycle-empty-msg");
+      var status = document.getElementById("recycle-status");
+
+      var files = fileList.querySelectorAll(".recycle-file");
+      if (files.length === 0) return;
+
+      files.forEach(function (f) { f.remove(); });
+      fileList.classList.add("hidden");
+      emptyMsg.classList.remove("hidden");
+      emptyBtn.disabled = true;
+      status.textContent = "All items permanently deleted.";
+    });
+  }
+
   function escapeHtml(text) {
     var div = document.createElement("div");
     div.textContent = text;
@@ -243,5 +265,24 @@
   window.DesktopManager = {
     openWindow: openWindow,
     closeWindow: closeWindow,
+    bringToFront: bringToFront,
+    initWindow: function (win) {
+      win.addEventListener("mousedown", function () {
+        bringToFront(win);
+      });
+      var titleBar = win.querySelector(".title-bar");
+      if (titleBar) initDrag(win, titleBar);
+      win.querySelectorAll(".title-bar-controls button").forEach(function (btn) {
+        btn.addEventListener("mousedown", function (e) { e.stopPropagation(); });
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var action = btn.getAttribute("data-action") || btn.getAttribute("aria-label").toLowerCase();
+          if (action === "close") closeWindow(win.id);
+          else if (action === "minimize") minimizeWindow(win.id);
+          else if (action === "maximize") maximizeWindow(win.id);
+        });
+      });
+      addTaskbarButton(win.id, win);
+    },
   };
 })();

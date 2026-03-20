@@ -1,0 +1,241 @@
+/* ===== AOL INSTANT MESSENGER ===== */
+
+/* Desktop icon */
+.icon-aim {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border: 2px solid #CC8800;
+  border-radius: 3px;
+  position: relative;
+}
+.icon-aim::after {
+  content: "🏃";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* ===== BUDDY LIST ===== */
+.aim-buddy-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.aim-header {
+  background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+  padding: 6px 8px 4px;
+  border-bottom: 1px solid #CC8800;
+}
+
+.aim-logo {
+  font-size: 11px;
+  font-weight: bold;
+  color: #003080;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.aim-screenname-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.aim-my-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+.aim-online-dot {
+  color: #00aa00;
+  font-size: 10px;
+}
+
+.aim-group-header {
+  background: #d4d0c8;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-bottom: 1px solid #808080;
+  border-top: 1px solid #fff;
+  cursor: default;
+}
+
+.aim-buddy-list {
+  background: #fff;
+  flex: 1;
+  min-height: 80px;
+}
+
+.aim-buddy {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  font-size: 12px;
+  cursor: default;
+}
+
+.aim-buddy:hover {
+  background: #000080;
+  color: #fff;
+}
+
+.aim-buddy:hover .aim-status-dot {
+  color: #00ff88;
+}
+
+.aim-status-dot {
+  color: #00aa00;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.aim-buddy-footer {
+  display: flex;
+  gap: 2px;
+  padding: 4px 6px;
+  background: #d4d0c8;
+  border-top: 1px solid #808080;
+}
+
+.aim-footer-btn {
+  font-size: 11px;
+  padding: 1px 6px;
+}
+
+/* ===== CHAT WINDOW ===== */
+.aim-chat-window {
+  width: 400px;
+}
+
+.aim-chat-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.aim-chat-to-bar {
+  background: #d4d0c8;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-bottom: 1px solid #808080;
+  color: #000;
+}
+
+.aim-chat-log {
+  background: #fff;
+  height: 200px;
+  overflow-y: auto;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid #808080;
+  line-height: 1.5;
+}
+
+.aim-typing-indicator {
+  background: #fff;
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+  padding: 1px 8px;
+  height: 16px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.aim-msg {
+  margin-bottom: 2px;
+  word-break: break-word;
+}
+
+.aim-msg-sender {
+  font-weight: bold;
+}
+
+.aim-msg-sent .aim-msg-sender {
+  color: #000080;
+}
+
+.aim-msg-recv .aim-msg-sender {
+  color: #aa0000;
+}
+
+.aim-msg-time {
+  font-size: 10px;
+  color: #888;
+}
+
+.aim-msg-colon {
+  font-weight: bold;
+}
+
+/* ===== CHAT TOOLBAR ===== */
+.aim-chat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  background: #d4d0c8;
+  border-bottom: 1px solid #808080;
+}
+
+.aim-fmt-btn {
+  font-size: 11px;
+  padding: 1px 5px;
+  min-width: 22px;
+}
+
+.aim-fmt-sep {
+  color: #888;
+  padding: 0 2px;
+  font-size: 14px;
+}
+
+.aim-font-select,
+.aim-font-size {
+  font-size: 11px;
+  height: 20px;
+  padding: 0 2px;
+}
+
+.aim-font-size {
+  width: 44px;
+}
+
+/* ===== INPUT AREA ===== */
+.aim-chat-input-area {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.aim-input {
+  width: 100%;
+  resize: none;
+  font-size: 12px;
+  font-family: "Arial", sans-serif;
+  border: none;
+  border-bottom: 1px solid #d0d0d0;
+  padding: 4px 8px;
+  outline: none;
+  box-sizing: border-box;
+  height: 56px;
+}
+
+.aim-send-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px 6px;
+  background: #d4d0c8;
+  border-top: 1px solid #808080;
+}
+
+.aim-send-btn {
+  font-size: 11px;
+  padding: 2px 14px;
+}
